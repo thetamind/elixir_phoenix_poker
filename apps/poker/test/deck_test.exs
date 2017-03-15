@@ -20,5 +20,12 @@ defmodule Poker.DeckTest do
       end)
       assert counts == %{spades: 13, clubs: 13, hearts: 13, diamonds: 13}
     end
+
+    test "has 4 cards of each value", %{deck: deck} do
+      counts = Enum.reduce(deck, %{}, fn({rank, _suit}, acc) ->
+        Map.update(acc, rank, 1, &(&1 + 1))
+      end)
+      assert counts == Enum.to_list(2..14) |> Map.new(&({&1, 4}))
+    end
   end
 end
