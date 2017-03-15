@@ -11,12 +11,11 @@ defmodule Poker.DeckTest do
     end
 
     test "is without duplicates", %{deck: deck} do
-      assert Enum.count(Enum.uniq(deck)) == 52
+      assert deck |> Enum.uniq() |> Enum.count() == 52
     end
 
     test "has 13 cards of each suite", %{deck: deck} do
-      counts = deck
-      |> Enum.reduce(%{}, fn({_rank, suit}, acc) ->
+      counts = Enum.reduce(deck, %{}, fn({_rank, suit}, acc) ->
         Map.update(acc, suit, 1, &(&1 + 1))
       end)
       assert counts == %{spades: 13, clubs: 13, hearts: 13, diamonds: 13}
