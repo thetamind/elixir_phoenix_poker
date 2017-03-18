@@ -4,6 +4,7 @@ defmodule Poker.Umbrella.Mixfile do
   def project do
     [apps_path: "apps",
      start_permanent: Mix.env == :prod,
+     dialyzer: [plt_add_deps: :transitive, flags: [:unmatched_returns, :error_handling, :race_conditions, :underspecs]],
      deps: deps()]
   end
 
@@ -21,7 +22,8 @@ defmodule Poker.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.6", only: [:dev, :test]}
+      {:credo, "~> 0.6", only: [:dev, :test]},
+      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false}
     ]
   end
 end
