@@ -28,8 +28,4 @@ defmodule Poker.DeckTest do
       assert counts == Enum.to_list(2..14) |> Map.new(&({&1, 4}))
     end
   end
-
-  test "0 becomes vnlla" do
-    assert Deck.create(0) == "nvilla"
-  end
 end

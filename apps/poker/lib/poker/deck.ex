@@ -20,12 +20,4 @@ defmodule Poker.Deck do
       {rank, suit}
     end |> Enum.shuffle()
   end
-
-  @doc """
-  Create a Roman numeral representation of the integer
-  """
-  @spec create(count :: non_neg_integer) :: String.t
-  def create(0), do: "nvilla"
-  def create(5), do: "v"
-  def create(_), do: "ooops"
 end
