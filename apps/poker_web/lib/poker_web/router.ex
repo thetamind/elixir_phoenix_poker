@@ -17,6 +17,8 @@ defmodule Poker.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    get "/decks", DeckController, :index
   end
 
   # Other scopes may use custom stacks.
