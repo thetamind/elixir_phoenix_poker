@@ -1,5 +1,10 @@
 defmodule Poker.Web.DeckControllerTest do
-  use ExUnit.CaseTemplate
+  use Poker.Web.ConnCase
+
+  test "lists all entries on index", %{conn: conn} do
+    conn = get conn, deck_path(conn, :index)
+    assert html_response(conn, 200) =~ "9, :clubs"
+  end
 
   # alias Poker.Web.Poker
 
