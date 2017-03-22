@@ -3,7 +3,7 @@ defmodule Poker.Web.DeckControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, deck_path(conn, :index)
-    assert html_response(conn, 200) =~ "9, :clubs"
+    assert html_response(conn, 200) =~ "<span>9&clubs;</span>"
   end
 
   # alias Poker.Web.Poker
