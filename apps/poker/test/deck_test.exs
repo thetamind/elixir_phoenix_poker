@@ -29,6 +29,14 @@ defmodule Poker.DeckTest do
     end
   end
 
+  describe "Deck.new_with_seed/1" do
+    test "deck shuffle with seed" do
+      deck = Deck.new_with_seed({1, 2, 3})
+      assert Enum.count(deck) == 52
+      assert Enum.take(deck, 3) == [{6, :clubs}, {5, :clubs}, {11, :hearts}]
+    end
+  end
+
   describe "rank_to_letter/1" do
     test "output" do
       values = [

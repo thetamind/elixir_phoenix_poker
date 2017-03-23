@@ -6,6 +6,11 @@ defmodule Poker.Web.DeckControllerTest do
     assert html_response(conn, 200) =~ "<span>9&clubs;</span>"
   end
 
+  test "list cards shuffled by seed", %{conn: conn} do
+    conn = get conn, deck_path(conn, :show, "1-2-3")
+    assert html_response(conn, 200) =~ "1-2-3"
+  end
+
   # alias Poker.Web.Poker
 
   # @create_attrs %{fee: 42, name: "some name"}

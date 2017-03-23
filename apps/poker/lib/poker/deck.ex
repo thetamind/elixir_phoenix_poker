@@ -21,6 +21,11 @@ defmodule Poker.Deck do
     end |> Enum.shuffle()
   end
 
+  def new_with_seed(seed) do
+      :rand.seed(:exsplus, seed)
+      new()
+  end
+
   @spec rank_to_letter(rank) :: char
   def rank_to_letter(rank) when rank <= 10, do: to_string(rank)
   def rank_to_letter(rank) when rank == 11, do: "J"
