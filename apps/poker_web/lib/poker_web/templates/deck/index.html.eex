@@ -1,9 +1,9 @@
 <h2>Decks</h2>
 
-<ul>
+<ul class="cards-container">
 
 <%= for card <- @deck do %>
-<li>
+<li class="card">
   <%= card_html card %>
 </li>
 <% end %>
