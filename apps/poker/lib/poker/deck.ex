@@ -20,4 +20,11 @@ defmodule Poker.Deck do
       {rank, suit}
     end |> Enum.shuffle()
   end
+
+  @spec rank_to_letter(rank) :: char
+  def rank_to_letter(rank) when rank <= 10, do: to_string(rank)
+  def rank_to_letter(rank) when rank == 11, do: "J"
+  def rank_to_letter(rank) when rank == 12, do: "Q"
+  def rank_to_letter(rank) when rank == 13, do: "K"
+  def rank_to_letter(rank) when rank == 14, do: "A"
 end

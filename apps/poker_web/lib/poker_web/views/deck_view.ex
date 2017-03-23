@@ -1,11 +1,13 @@
 defmodule Poker.Web.DeckView do
   use Poker.Web, :view
 
+  alias Poker.Deck
+
   @spec card_html(Poker.Deck.card) :: Phoenix.HTML.Safe.t
   def card_html(card)
   def card_html({rank, suit}) do
     entity = suit_to_entity(suit)
-    content_tag :span, [to_string(rank), entity]
+    content_tag :span, [Deck.rank_to_letter(rank), entity]
   end
 
   @spec suit_to_entity(Poker.Deck.suit) :: Phoenix.HTML.Safe.t

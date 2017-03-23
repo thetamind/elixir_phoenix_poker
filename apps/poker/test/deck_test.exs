@@ -28,4 +28,21 @@ defmodule Poker.DeckTest do
       assert counts == Enum.to_list(2..14) |> Map.new(&({&1, 4}))
     end
   end
+
+  describe "rank_to_letter/1" do
+    test "output" do
+      values = [
+        [2, "2"],
+        [9, "9"],
+        [10, "10"],
+        [11, "J"],
+        [12, "Q"],
+        [13, "K"],
+        [14, "A"],
+      ]
+      for [rank, expected] <- values do
+        assert Deck.rank_to_letter(rank) == expected
+      end
+    end
+  end
 end
