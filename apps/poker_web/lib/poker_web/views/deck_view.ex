@@ -16,4 +16,9 @@ defmodule Poker.Web.DeckView do
   def suit_to_entity(:clubs), do: raw "&clubs;"
   def suit_to_entity(:hearts), do: raw "&hearts;"
   def suit_to_entity(:diamonds), do: raw "&diams;"
+
+  @spec title({integer(), integer(), integer()}) :: Phoenix.HTML.Safe.t
+  def title(seed) do
+    "Deal (Seed: #{inspect(seed)})"
+  end
 end

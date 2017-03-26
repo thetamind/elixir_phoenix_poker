@@ -1,0 +1,10 @@
+<h2><%= title(@seed) %></h2>
+
+<ul class="cards-container">
+
+<%= for card <- @deck do %>
+<li class="card">
+  <%= card_html card %>
+</li>
+<% end %>
+</ul>

@@ -15,6 +15,6 @@ defmodule Poker.Web.DeckController do
     |> List.to_tuple()
 
     deck = Poker.Deck.new_with_seed(numbers)
-    render(conn, "index.html", deck: deck)
+    render(conn, "show.html", deck: deck, seed: numbers)
   end
 end
