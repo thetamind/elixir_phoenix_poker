@@ -8,7 +8,7 @@ defmodule Poker.Web.DeckControllerTest do
 
   test "list cards shuffled by seed", %{conn: conn} do
     conn = get conn, deck_path(conn, :show, "1-2-3")
-    assert html_response(conn, 200) =~ "1-2-3"
+    assert html_response(conn, 200) =~ "<span>J&hearts;</span></li>\n<li class=\"card\">\n<span>10&spades;</span></li>\n"
   end
 
   # alias Poker.Web.Poker

@@ -9,7 +9,12 @@ defmodule Poker.Web.DeckController do
 
   @spec show(Plug.Conn.t, Plug.Conn.params) :: Plug.Conn.t
   def show(conn, %{"seed" => seed}) do
-    deck = Poker.Deck.new_with_seed(seed)
+    numbers = seed
+    |> String.split("-")
+    |> Enum.map(&String.to_integer/1)
+    |> List.to_tuple()
+
+    deck = Poker.Deck.new_with_seed(numbers)
     render(conn, "index.html", deck: deck)
   end
 end

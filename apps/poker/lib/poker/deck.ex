@@ -21,9 +21,10 @@ defmodule Poker.Deck do
     end |> Enum.shuffle()
   end
 
-  def new_with_seed(seed) do
-      :rand.seed(:exsplus, seed)
-      new()
+  @spec new_with_seed({integer(), integer(), integer()}) :: deck
+  def new_with_seed(seed) when tuple_size(seed) == 3 do
+    _state = :rand.seed(:exsplus, seed)
+    new()
   end
 
   @spec rank_to_letter(rank) :: char
