@@ -15,7 +15,7 @@ defmodule Poker.Web.DeckController do
 
   @spec show(Plug.Conn.t, Plug.Conn.params) :: Plug.Conn.t
   def show(conn, %{"seed" => seed}) do
-    <<i1::32, i2::32, i3::32>> = seed
+    <<i1::32, i2::32, i3::32>> = Base.url_decode64!(seed)
 
     deck = Poker.Deck.new_with_seed({i1, i2, i3})
     render(conn, "show.html", deck: deck, seed: seed)

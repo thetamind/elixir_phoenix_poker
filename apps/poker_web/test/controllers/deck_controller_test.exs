@@ -23,9 +23,15 @@ defmodule Poker.Web.DeckControllerTest do
   end
 
   test "list cards shuffled by seed", %{conn: conn} do
-    conn = get conn, deck_path(conn, :show, "123456789012")
-    assert html_response(conn, 200) =~ "123456789012"
+    conn = get conn, deck_path(conn, :show, "MTIzNDU2Nzg5MDEy")
+    assert html_response(conn, 200) =~ "MTIzNDU2Nzg5MDEy"
     assert html_response(conn, 200) =~ ~r/Q&spades;.*?6&clubs;/s
+  end
+
+  test "list cards shuffled by base64 encoded seed", %{conn: conn} do
+    conn = get conn, deck_path(conn, :show, "aYKx42KLgnvGz8dw")
+    assert html_response(conn, 200) =~ "aYKx42KLgnvGz8dw"
+    assert html_response(conn, 200) =~ ~r/7&clubs;.*?7&diams;/s
   end
 
   # alias Poker.Web.Poker
