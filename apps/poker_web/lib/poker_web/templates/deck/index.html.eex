@@ -1,10 +1,5 @@
 <h2>Decks</h2>
 
-<ul class="cards-container">
-
-<%= for card <- @deck do %>
-<li class="card">
-  <%= card_html card %>
-</li>
-<% end %>
-</ul>
+<form action="<%= deck_path(@conn, :shuffle) %>" method="get">
+<button>Shuffle and deal</button>
+</form>

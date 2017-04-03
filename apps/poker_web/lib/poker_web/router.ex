@@ -19,6 +19,7 @@ defmodule Poker.Web.Router do
     get "/", PageController, :index
 
     get "/decks", DeckController, :index
+    get "/decks/shuffle", DeckController, :shuffle
     get "/decks/:seed", DeckController, :show
   end
 

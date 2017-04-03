@@ -3,13 +3,18 @@ defmodule Poker.Web.DeckControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, deck_path(conn, :index)
-    assert html_response(conn, 200) =~ "<span>9&clubs;</span>"
+    assert html_response(conn, 200) =~ "Shuffle and deal"
+  end
+
+  test "generate seed and redirects", %{conn: conn} do
+    conn = get conn, deck_path(conn, :shuffle)
+    assert redirected_to(conn) =~ deck_path(conn, :show, "123456789012")
   end
 
   test "list cards shuffled by seed", %{conn: conn} do
-    conn = get conn, deck_path(conn, :show, "1-2-3")
-    assert html_response(conn, 200) =~ "Seed: {1, 2, 3}"
-    assert html_response(conn, 200) =~ "<span>J&hearts;</span></li>\n<li class=\"card\">\n<span>10&spades;</span></li>\n"
+    conn = get conn, deck_path(conn, :show, "123456789012")
+    assert html_response(conn, 200) =~ "123456789012"
+    assert html_response(conn, 200) =~ ~r/Q&spades;.*?6&clubs;/s
   end
 
   # alias Poker.Web.Poker
