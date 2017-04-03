@@ -7,9 +7,19 @@ defmodule Poker.Web.DeckControllerTest do
   end
 
   test "generate seed and redirects", %{conn: conn} do
-    conn = Plug.Conn.assign(conn, :random_seed, "123456789012")
-    conn = get conn, deck_path(conn, :shuffle)
-    assert redirected_to(conn) =~ deck_path(conn, :show, "123456789012")
+    values = [
+      ["123456789012", "MTIzNDU2Nzg5MDEy"],
+      [<<105, 130, 177, 227, 98, 139, 130, 123, 198, 207, 199, 112>>, "aYKx42KLgnvGz8dw"],
+    ]
+    for [seed, url_encoded_seed] <- values do
+      conn =
+        conn
+        |> Phoenix.ConnTest.recycle()
+        |> Plug.Conn.assign(:random_seed, seed)
+        |> get(deck_path(conn, :shuffle))
+
+      assert redirected_to(conn) =~ deck_path(conn, :show, url_encoded_seed)
+    end
   end
 
   test "list cards shuffled by seed", %{conn: conn} do
