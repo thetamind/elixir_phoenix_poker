@@ -7,6 +7,7 @@ defmodule Poker.Web.DeckControllerTest do
   end
 
   test "generate seed and redirects", %{conn: conn} do
+    conn = Plug.Conn.assign(conn, :random_seed, "123456789012")
     conn = get conn, deck_path(conn, :shuffle)
     assert redirected_to(conn) =~ deck_path(conn, :show, "123456789012")
   end

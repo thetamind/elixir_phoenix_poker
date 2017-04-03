@@ -8,7 +8,8 @@ defmodule Poker.Web.DeckController do
 
   @spec shuffle(Plug.Conn.t, Plug.Conn.params) :: Plug.Conn.t
   def shuffle(conn, _params) do
-    redirect(conn, to: deck_path(conn, :show, "123456789012"))
+    seed = conn.assigns[:random_seed] || :crypto.strong_rand_bytes(12)
+    redirect(conn, to: deck_path(conn, :show, seed))
   end
 
   @spec show(Plug.Conn.t, Plug.Conn.params) :: Plug.Conn.t
