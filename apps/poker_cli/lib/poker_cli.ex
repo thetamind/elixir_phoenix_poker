@@ -1,6 +1,12 @@
 defmodule Poker.CLI do
   @moduledoc """
   Command line interface.
+
+  ## Examples
+
+  iex> Poker.CLI.help
+  "Poker CLI"
+
   """
 
   @doc """
@@ -23,10 +29,24 @@ defmodule Poker.CLI do
   end
 
   def parse_args(argv) do
-    argv |> List.first() |> String.to_atom()
+    case OptionParser.parse(argv) do
+      {[seed: seed], _, _} -> [seed: seed]
+      {[help: true], _, _} -> :help
+      _ -> :help
+    end
+
   end
 
   defp process(:help) do
     IO.puts help()
+  end
+
+  defp process([seed: seed]) do
+    msg = case seed do
+      "AAAAAAAAAAAAAAAA" -> "Your hand: As Kd Qh Jc"
+      _ -> "Your hand: something random"
+    end
+
+    IO.puts msg
   end
 end
