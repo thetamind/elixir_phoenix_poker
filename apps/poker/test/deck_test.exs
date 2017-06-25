@@ -53,4 +53,18 @@ defmodule Poker.DeckTest do
       end
     end
   end
+
+  describe "suit_to_letter/1" do
+    test "output" do
+      values = [
+        [:clubs, "c"],
+        [:diamonds, "d"],
+        [:hearts, "h"],
+        [:spades, "s"],
+      ]
+      for [suit, expected] <- values do
+        assert Deck.suit_to_letter(suit) == expected
+      end
+    end
+  end
 end

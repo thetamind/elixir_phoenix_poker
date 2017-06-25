@@ -33,4 +33,11 @@ defmodule Poker.Deck do
   def rank_to_letter(rank) when rank == 12, do: "Q"
   def rank_to_letter(rank) when rank == 13, do: "K"
   def rank_to_letter(rank) when rank == 14, do: "A"
+
+  @spec suit_to_letter(Poker.Deck.suit) :: char
+  def suit_to_letter(suit)
+  def suit_to_letter(:spades), do: "s"
+  def suit_to_letter(:clubs), do: "c"
+  def suit_to_letter(:hearts), do: "h"
+  def suit_to_letter(:diamonds), do: "d"
 end
