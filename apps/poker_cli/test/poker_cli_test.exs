@@ -18,7 +18,7 @@ defmodule Poker.CLITest do
       Poker.CLI.main(["--seed", "AAAAAAAAAAAAAAAA"])
     end
 
-    assert capture_io(execute_main) =~ "Your hand: As Kd Qh Jc"
+    assert capture_io(execute_main) =~ "Your hand: 6d Kd 10d Ah Qh"
   end
 
   test "simple game seed" do
