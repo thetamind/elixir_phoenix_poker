@@ -38,6 +38,7 @@ defmodule Poker.CLI.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
+      {:poker, in_umbrella: true},
       {:credo,  "~> 0.7", only: [:dev, :test]},
     ]
   end
