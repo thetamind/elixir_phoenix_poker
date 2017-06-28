@@ -12,4 +12,11 @@ defmodule Poker.PlayerTest do
       assert name != ""
     end
   end
+
+  describe "get_by/1" do
+    test "returns single player by attribute" do
+      player = Player.get_by(name: "Bob")
+      assert Map.get(player, :name) == "Bob"
+    end
+  end
 end

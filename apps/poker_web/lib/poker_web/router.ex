@@ -21,6 +21,9 @@ defmodule Poker.Web.Router do
     get "/decks", DeckController, :index
     get "/decks/shuffle", DeckController, :shuffle
     get "/decks/:seed", DeckController, :show
+
+    get "/players", PlayerController, :index
+    get "/players/:name", PlayerController, :show
   end
 
   # Other scopes may use custom stacks.
