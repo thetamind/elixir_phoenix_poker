@@ -2,7 +2,7 @@ defmodule Poker.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Poker.Web.RoomChannel
+  channel "table:*", Poker.Web.TableChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
