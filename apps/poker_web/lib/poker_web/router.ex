@@ -24,6 +24,7 @@ defmodule Poker.Web.Router do
 
     get "/players", PlayerController, :index
     get "/players/:name", PlayerController, :show
+    post "/auth/become", PlayerController, :become
   end
 
   # Other scopes may use custom stacks.
