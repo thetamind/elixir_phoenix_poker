@@ -18,5 +18,10 @@ defmodule Poker.PlayerTest do
       player = Player.get_by(name: "Bob")
       assert Map.get(player, :name) == "Bob"
     end
+
+    test "player not found" do
+      player = Player.get_by(name: "NOT_FOUND")
+      assert player == nil
+    end
   end
 end
