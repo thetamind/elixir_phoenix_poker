@@ -9,12 +9,16 @@ defmodule Poker.Web.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :with_session do
+    plug Poker.Web.Auth.CurrentUser
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", Poker.Web do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :with_session]
 
     get "/", PageController, :index
 
@@ -25,11 +29,6 @@ defmodule Poker.Web.Router do
     get "/players", PlayerController, :index
     get "/players/:name", PlayerController, :show
 
-    resources("/sessions", SessionController, only: [:new, :create, :delete])
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Poker.Web do
-  #   pipe_through :api
-  # end
 end
