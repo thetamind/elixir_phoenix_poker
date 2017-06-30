@@ -29,6 +29,8 @@ defmodule Poker.Web.Router do
     get "/players", PlayerController, :index
     get "/players/:name", PlayerController, :show
 
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/sessions/new", SessionController, :new
+    post "/sessions", SessionController, :create
+    delete "/sessions", SessionController, :delete
   end
 end
