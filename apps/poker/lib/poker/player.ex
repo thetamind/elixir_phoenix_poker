@@ -3,7 +3,7 @@ defmodule Poker.Player do
   A player.
   """
 
-  defstruct [:name]
+  defstruct [:id, :name]
 
   @type t(name) :: %__MODULE__{name: name}
 
@@ -11,11 +11,18 @@ defmodule Poker.Player do
 
   def list_players do
     [
-      %__MODULE__{name: "Alice"},
-      %__MODULE__{name: "Bob"},
-      %__MODULE__{name: "Carol"},
-      %__MODULE__{name: "Derek"},
+      %__MODULE__{id: 1, name: "Alice"},
+      %__MODULE__{id: 2, name: "Bob"},
+      %__MODULE__{id: 3, name: "Carol"},
+      %__MODULE__{id: 4, name: "Derek"},
     ]
+  end
+
+  @spec get(id :: pos_integer()) :: t | nil
+  def get(id) do
+    Enum.find list_players(), fn map ->
+      Map.get(map, :id) == id
+    end
   end
 
   @spec get_by(params :: Enumerable.t) :: t | nil

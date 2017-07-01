@@ -13,6 +13,18 @@ defmodule Poker.PlayerTest do
     end
   end
 
+  describe "get/1" do
+    test "returns single player by id" do
+      player = Player.get(2)
+      assert Map.get(player, :name) == "Bob"
+    end
+
+    test "player not found" do
+      player = Player.get(100)
+      assert player == nil
+    end
+  end
+
   describe "get_by/1" do
     test "returns single player by attribute" do
       player = Player.get_by(name: "Bob")
