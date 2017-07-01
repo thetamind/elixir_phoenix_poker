@@ -8,8 +8,11 @@ defmodule Poker.Web.PlayerController do
     render conn, "index.html", players: players
   end
 
-  def show(conn, %{"name" => name}) do
-    player = Player.get_by(name: name)
-    render conn, "show.html", player: player
+  def show(conn, %{"id" => id}) do
+    id = String.to_integer(id)
+    case Player.get(id) do
+      nil -> conn |> put_status(404) |> render(Poker.Web.ErrorView, "404.html")
+      player -> render conn, "show.html", player: player
+    end
   end
 end

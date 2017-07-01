@@ -27,7 +27,7 @@ defmodule Poker.Web.Router do
     get "/decks/:seed", DeckController, :show
 
     get "/players", PlayerController, :index
-    get "/players/:name", PlayerController, :show
+    get "/players/:id", PlayerController, :show
 
     get "/sessions/new", SessionController, :new
     post "/sessions", SessionController, :create
