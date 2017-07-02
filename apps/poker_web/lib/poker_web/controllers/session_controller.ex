@@ -8,10 +8,11 @@ defmodule Poker.Web.SessionController do
     render conn, "new.html", players: players
   end
 
-  def create(conn, %{"name" => name}) do
-    player = Player.get_by(name: name)
+  def create(conn, %{"id" => id}) do
+    id = String.to_integer(id)
+    player = Player.get(id)
     if player do
-      conn = put_session(conn, :current_user, player.name)
+      conn = put_session(conn, :current_user, player.id)
       conn = put_flash(conn, :info, "Sign in successful.")
       redirect(conn, to: player_path(conn, :index))
     else

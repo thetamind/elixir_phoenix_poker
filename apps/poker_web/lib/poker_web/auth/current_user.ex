@@ -6,8 +6,8 @@ defmodule Poker.Web.Auth.CurrentUser do
 
   def call(conn, _opts \\ []) do
     case get_session(conn, :current_user) do
-      name when is_binary(name) ->
-        current_user = Poker.Player.get_by(name: name)
+      id when is_number(id) ->
+        current_user = Poker.Player.get(id)
         if current_user do
           assign(conn, :current_user, current_user)
         else

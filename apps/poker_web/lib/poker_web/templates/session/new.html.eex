@@ -2,9 +2,9 @@
   <div class="col-lg-6">
     <h2>Sign in</h2>
     <%= form_tag session_path(@conn, :create), method: :post do %>
-      <%= content_tag :select, name: "name" do %>
+      <%= content_tag :select, name: "id" do %>
         <%= for player <- @players do %>
-          <option value="<%= player.name %>"><%= player.name %></option>
+          <option value="<%= player.id %>"><%= player.name %></option>
         <% end %>
       <% end %>
       <%= submit "Sign in" %>

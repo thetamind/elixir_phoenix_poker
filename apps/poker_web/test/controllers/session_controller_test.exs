@@ -8,8 +8,8 @@ defmodule Poker.Web.SessionControllerTest do
 
   describe "POST /sessions" do
     test "successful", %{conn: conn} do
-      conn = post conn, "/sessions", name: "Alice"
-      assert get_session(conn, :current_user) == "Alice"
+      conn = post conn, "/sessions", id: "1"
+      assert get_session(conn, :current_user) == 1
       location = redirected_to(conn)
       assert location =~ player_path(conn, :index)
       conn = get conn, location
@@ -19,7 +19,7 @@ defmodule Poker.Web.SessionControllerTest do
     end
 
     test "auth fails", %{conn: conn} do
-      conn = post conn, "/sessions", name: "NOT A PLAYER"
+      conn = post conn, "/sessions", id: "-1"
       assert get_session(conn, :current_user) == nil
       location = redirected_to(conn)
       assert location =~ session_path(conn, :new)

@@ -38,19 +38,18 @@ defmodule Poker.Web.Auth.CurrentUserTest do
       assert conn.assigns[:current_user] == nil
     end
 
-    test "assigns is has valid user", %{conn: conn} do
+    test "session has valid user id", %{conn: conn} do
       player = Player.list_players() |> List.first()
       conn = conn
-      |> put_session(:current_user, player.name)
+      |> put_session(:current_user, player.id)
       |> CurrentUser.call()
 
       assert conn.assigns[:current_user] == player
     end
 
-    test "assigns is has invalid user", %{conn: conn} do
-      player = Player.list_players() |> List.first() |> Map.put(:name, "NOT FOUND")
+    test "session has invalid user id", %{conn: conn} do
       conn = conn
-      |> put_session(:current_user, player.name)
+      |> put_session(:current_user, -1)
       |> CurrentUser.call()
 
       assert conn.assigns[:current_user] == nil

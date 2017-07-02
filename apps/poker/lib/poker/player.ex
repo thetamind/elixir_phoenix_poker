@@ -5,9 +5,9 @@ defmodule Poker.Player do
 
   defstruct [:id, :name]
 
-  @type t(name) :: %__MODULE__{name: name}
+  @type t(id, name) :: %__MODULE__{id: id, name: name}
 
-  @type t :: %__MODULE__{name: String.t()}
+  @type t :: %__MODULE__{id: pos_integer(), name: String.t()}
 
   def list_players do
     [
